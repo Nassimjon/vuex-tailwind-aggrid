@@ -52,7 +52,7 @@ export default {
   },
 
 	async mounted() {
-		this.get();
+		this.get(12);
 		//this.$store.dispatch('get')
 		
 		

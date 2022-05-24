@@ -1,24 +1,30 @@
 import axios from "axios"
 
 export default {
-	state: {
-		clients: []
-	},
 	actions: {
-		getClientsFromBack(){
-			const CliBack = []
-			axios.
-				get('https://jsonplaceholder.typicode.com/posts?_limit=10')
+		get(ctx, limit = 3){
+			
+			axios.get('https://jsonplaceholder.typicode.com/posts?_limit=' +limit)
 				  .then((Response) => {
+						let CliBack = []
 						CliBack = Response.data;
+						ctx.commit('getClientsFromBack', CliBack)
 					})
+					
 		}
   },
 	mutations: {
-		getClientsFromBackM(state, CliBack) {
+		getClientsFromBack(state, CliBack) {
 			state.clients = CliBack
 		}
 	},
+  state: {
+		clients: []
+  },
   getters: {
-	},
+		getClients(state) {
+			return state.clients
+		}
+  },
+
 }
